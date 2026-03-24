@@ -1,1 +1,6 @@
-
+apimServiceName: cdngmnks-apim-dev
+namedValues:
+loggers:
+diagnostics:
+backends:
+apis:
