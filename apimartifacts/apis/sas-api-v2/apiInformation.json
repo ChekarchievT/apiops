@@ -1,0 +1,19 @@
+{
+  "properties": {
+    "path": "sas-api-v2",
+    "apiRevision": "1",
+    "authenticationSettings": {},
+    "description": "",
+    "isCurrent": true,
+    "displayName": "SAS_API_v2",
+    "protocols": [
+      "https"
+    ],
+    "serviceUrl": "https://sas-crm-api-proxy.azurewebsites.net/api/dev",
+    "subscriptionKeyParameterNames": {
+      "header": "Ocp-Apim-Subscription-Key",
+      "query": "subscription-key"
+    },
+    "subscriptionRequired": false
+  }
+}
