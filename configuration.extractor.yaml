@@ -1,12 +1,14 @@
-# configuration.extractor.yaml
 version: 1.0
 
 apis:
-  - id: /subscriptions/${AZURE_SUBSCRIPTION_ID}/resourceGroups/${AZURE_RESOURCE_GROUP_NAME}/providers/Microsoft.ApiManagement/service/${API_MANAGEMENT_SERVICE_NAME}/apis/CacheTest
-    includeProducts: true   # this pulls subscriptions tied to the API products
-    includePolicies: false  # we don't want policies
-    includeNamedValues: false # avoid extra named values
+  - name: CacheTest   # <-- only extract the dev API
+    # optional: id can be used, but name is enough if unique
 
 output:
   folder: extracted
   format: yaml
+
+options:
+  includeProducts: true        # subscriptions tied to products
+  includePolicies: false
+  includeNamedValues: true
