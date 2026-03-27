@@ -1,0 +1,19 @@
+{
+  "properties": {
+    "path": "cachetest",
+    "apiRevision": "1",
+    "authenticationSettings": {},
+    "description": "",
+    "isCurrent": true,
+    "displayName": "CacheTest",
+    "protocols": [
+      "https"
+    ],
+    "serviceUrl": "https://d5b1350c0bcd.ngrok-free.app/api",
+    "subscriptionKeyParameterNames": {
+      "header": "Ocp-Apim-Subscription-Key",
+      "query": "subscription-key"
+    },
+    "subscriptionRequired": false
+  }
+}
