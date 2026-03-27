@@ -1,0 +1,42 @@
+openapi: 3.0.1
+info:
+  title: SAS_API_v2
+  description: ''
+  version: '1.0'
+servers:
+  - url: https://cdngmnks-apim-dev.azure-api.net/sas-api-v2
+paths:
+  /oauth/token:
+    post:
+      summary: Token
+      operationId: token
+      responses:
+        '200':
+          description: ''
+  /crm/v2/applications:
+    get:
+      summary: Applications
+      operationId: applications
+      responses:
+        '200':
+          description: ''
+  /countries:
+    get:
+      summary: Countries
+      operationId: 6901e9c3261ec510436cea62
+      responses:
+        '200':
+          description: ''
+components:
+  securitySchemes:
+    apiKeyHeader:
+      type: apiKey
+      name: Ocp-Apim-Subscription-Key
+      in: header
+    apiKeyQuery:
+      type: apiKey
+      name: subscription-key
+      in: query
+security:
+  - apiKeyHeader: [ ]
+  - apiKeyQuery: [ ]

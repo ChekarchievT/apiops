@@ -1,0 +1,56 @@
+<!--
+    - Policies are applied in the order they appear.
+    - Position <base/> inside a section to inherit policies from the outer scope.
+    - Comments within policies are not preserved.
+-->
+<!-- Add policies as children to the <inbound>, <outbound>, <backend>, and <on-error> elements -->
+<policies>
+	<!-- Throttle, authorize, validate, cache, or transform the requests -->
+	<inbound>
+		<base />
+		<!-- Microsoft Entra authentication -->
+		<validate-jwt header-name="Authorization" failed-validation-httpcode="401" failed-validation-error-message="Unauthorized.">
+			<openid-config url="https://login.microsoftonline.com/153a150d-1a84-48b6-a71c-678c3616da35/.well-known/openid-configuration" />
+		</validate-jwt>
+		<!-- SAS API token caching & retrieval -->
+		<cache-lookup-value key="sasAccessToken" variable-name="cachedToken" />
+		<choose>
+			<when condition="@(!context.Variables.ContainsKey(&quot;cachedToken&quot;))">
+				<send-request mode="new" response-variable-name="tokenResponse" timeout="20" ignore-error="false">
+					<set-url>https://sas-crm-api-proxy.azurewebsites.net/api/dev/oauth/token</set-url>
+					<set-method>POST</set-method>
+					<set-header name="Content-Type" exists-action="override">
+						<value>application/x-www-form-urlencoded</value>
+					</set-header>
+					<set-header name="Authorization" exists-action="override">
+						<value>Basic b2w1UFpod3hTd19TYUFsME5kX214Zy4uOkxjZW1TdmtJOXlfVUpiZkZfS1daMEEuLg==</value>
+					</set-header>
+					<set-body>grant_type=client_credentials</set-body>
+				</send-request>
+				<!-- Extract token from response body -->
+				<set-variable name="accessToken" value="@((string)((IResponse)context.Variables["tokenResponse"]).Body.As<JObject>()["access_token"])" />
+				<cache-store-value key="sasAccessToken" value="@((string)context.Variables[&quot;accessToken&quot;])" duration="10800" />
+			</when>
+			<otherwise>
+				<set-variable name="accessToken" value="@((string)context.Variables[&quot;cachedToken&quot;])" />
+			</otherwise>
+		</choose>
+		<!-- Use token for backend request -->
+		<set-header name="Authorization" exists-action="override">
+			<value>@("Bearer " + (string)context.Variables["accessToken"])</value>
+		</set-header>
+		<set-backend-service base-url="https://sas-crm-api-proxy.azurewebsites.net/api/dev" />
+	</inbound>
+	<!-- Control if and how the requests are forwarded to services  -->
+	<backend>
+		<base />
+	</backend>
+	<!-- Customize the responses -->
+	<outbound>
+		<base />
+	</outbound>
+	<!-- Handle exceptions and customize error responses  -->
+	<on-error>
+		<base />
+	</on-error>
+</policies>
