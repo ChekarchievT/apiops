@@ -1,0 +1,15 @@
+# configuration.extractor.yaml
+version: 1.0
+
+apis:
+  - name: CacheTest
+  - id: /subscriptions/${AZURE_SUBSCRIPTION_ID}/resourceGroups/<YOUR_RESOURCE_GROUP>/providers/Microsoft.ApiManagement/service/<YOUR_APIM_NAME>/apis/cache
+
+output:
+  folder: extracted
+  format: yaml
+
+options:
+  includeProducts: true        # to get subscriptions tied to products
+  includePolicies: false
+  includeNamedValues: true
