@@ -2,14 +2,11 @@
 version: 1.0
 
 apis:
-  - name: CacheTest
-  - id: /subscriptions/${AZURE_SUBSCRIPTION_ID}/resourceGroups/<YOUR_RESOURCE_GROUP>/providers/Microsoft.ApiManagement/service/<YOUR_APIM_NAME>/apis/CacheTest
+  - id: /subscriptions/${AZURE_SUBSCRIPTION_ID}/resourceGroups/${AZURE_RESOURCE_GROUP_NAME}/providers/Microsoft.ApiManagement/service/${API_MANAGEMENT_SERVICE_NAME}/apis/CacheTest
+    includeProducts: true   # this pulls subscriptions tied to the API products
+    includePolicies: false  # we don't want policies
+    includeNamedValues: false # avoid extra named values
 
 output:
   folder: extracted
   format: yaml
-
-options:
-  includeProducts: true        # to get subscriptions tied to products
-  includePolicies: false
-  includeNamedValues: true
