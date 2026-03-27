@@ -1,0 +1,70 @@
+openapi: 3.0.1
+info:
+  title: pocOracle
+  description: ''
+  version: '1.0'
+servers:
+  - url: https://cdngmnks-apim-dev.azure-api.net
+paths:
+  /*:
+    post:
+      summary: pocoracle_POST
+      operationId: 68cbb1f64050fa68216fe154
+      responses:
+        '200':
+          description: ''
+    put:
+      summary: pocoracle_PUT
+      operationId: 68cbb1f60090442271ab6a7a
+      responses:
+        '200':
+          description: ''
+    delete:
+      summary: pocoracle_DELETE
+      operationId: 68cbb1f6fdbc8e8116f045d6
+      responses:
+        '200':
+          description: ''
+    patch:
+      summary: pocoracle_PATCH
+      operationId: 68cbb1f6f81ab6c9d383db76
+      responses:
+        '200':
+          description: ''
+    get:
+      summary: pocoracle_GET
+      operationId: 68cbb1f6cbab08a394f93b64
+      responses:
+        '200':
+          description: ''
+    trace:
+      summary: pocoracle_TRACE
+      operationId: 68cbb1f6323f8d6ee8437479
+      responses:
+        '200':
+          description: ''
+    head:
+      summary: pocoracle_HEAD
+      operationId: 68cbb1f6e71db171cc830772
+      responses:
+        '200':
+          description: ''
+    options:
+      summary: pocoracle_OPTIONS
+      operationId: 68cbb1f6f8fd8f391987b05b
+      responses:
+        '200':
+          description: ''
+components:
+  securitySchemes:
+    apiKeyHeader:
+      type: apiKey
+      name: Ocp-Apim-Subscription-Key
+      in: header
+    apiKeyQuery:
+      type: apiKey
+      name: subscription-key
+      in: query
+security:
+  - apiKeyHeader: [ ]
+  - apiKeyQuery: [ ]
