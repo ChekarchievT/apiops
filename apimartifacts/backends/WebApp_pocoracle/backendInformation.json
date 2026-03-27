@@ -1,0 +1,8 @@
+{
+  "properties": {
+    "description": "pocOracle",
+    "protocol": "http",
+    "resourceId": "https://management.azure.com/subscriptions/a6c44f8e-d8bd-4fb1-9cb7-71a91b6ddca6/resourceGroups/development/providers/Microsoft.Web/sites/pocOracle",
+    "url": "https://pocoracle-gjadecbkenbsb7b0.westeurope-01.azurewebsites.net"
+  }
+}
